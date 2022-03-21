@@ -1,0 +1,51 @@
+
+
+Version:	3.14
+CmdLine:	C:\Users\zineb\Desktop\project\warehouse.exe --l4j-debug
+WOW64:		yes
+Create mutex:	Warehouses
+Working dir:	C:\Users\zineb\Desktop\project\.
+Java min ver:	1.008.000
+Java max ver:	1.011.000_014
+Bundled JRE(s):	jre
+Check launcher:	C:\Users\zineb\Desktop\project\jre\bin\javaw.exe (OK)
+Main class:	warehouses.project.ProjectApplication
+Info:		Classpath not defined.
+Launcher:	C:\Users\zineb\Desktop\project\jre\bin\javaw.exe
+Launcher args:	-classpath "C:\Users\zineb\Desktop\project\warehouse.exe" warehouses.project.ProjectApplication
+Args length:	95/32768 chars
+Exit code:	0
+
+
+Version:	3.14
+CmdLine:	C:\Users\zineb\Desktop\project\warehouse.exe --l4j-debug
+WOW64:		yes
+Create mutex:	Warehouses
+Working dir:	C:\Users\zineb\Desktop\project\.
+Java min ver:	1.008.000
+Java max ver:	1.011.000_014
+Bundled JRE(s):	jre
+Check launcher:	C:\Users\zineb\Desktop\project\jre\bin\javaw.exe (OK)
+Main class:	org.springframework.boot.loader.JarLauncher
+Info:		Classpath not defined.
+Launcher:	C:\Users\zineb\Desktop\project\jre\bin\javaw.exe
+Launcher args:	-classpath "C:\Users\zineb\Desktop\project\warehouse.exe" org.springframework.boot.loader.JarLauncher
+Args length:	101/32768 chars
+Exit code:	0
+
+
+Version:	3.14
+CmdLine:	C:\Users\zineb\Desktop\project\warehouse.exe --l4j-debug
+WOW64:		yes
+Create mutex:	Warehouses
+Working dir:	C:\Users\zineb\Desktop\project\.
+Java min ver:	1.008.000
+Java max ver:	1.011.000_014
+Bundled JRE(s):	jre
+Check launcher:	C:\Users\zineb\Desktop\project\jre\bin\javaw.exe (OK)
+Main class:	org.springframework.boot.loader.JarLauncher
+Info:		Classpath not defined.
+Launcher:	C:\Users\zineb\Desktop\project\jre\bin\javaw.exe
+Launcher args:	-classpath "C:\Users\zineb\Desktop\project\warehouse.exe" org.springframework.boot.loader.JarLauncher
+Args length:	101/32768 chars
+Exit code:	0

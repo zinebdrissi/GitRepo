@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+	<script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+	
+	
+<title>Update a User</title>
+</head>
+<body>
+<form action="#" 
+  th:action="@{/update/{id}(id=${user.id_User})}" 
+  th:object="${user}" 
+  method="post">
+  
+    <label for="name">Full Name</label>
+    <input type="text" th:field="*{FullName}" id="name" placeholder="Name">
+    
+    <label for="name">Phone Number</label>
+    <input type="number" th:field="*{PhoneNumber}" id="name" placeholder="Phone Number">
+    
+    <label for="email">Email</label>
+    <input type="email" th:field="*{Email}" id="email" placeholder="Email">
+    
+    <label for="name">Role</label>
+    <input type="text" th:field="*{Role}" id="name" placeholder="Role">
+    
+     <label for="name">UserId</label>
+      <input type="number" th:field="*{Id_User}" id="name" placeholder="User id">   
+         
+      <label for="name">EntrepriseId</label> 
+      <input type="number" th:field="*{ID_entreprise}" id="name" placeholder="Entreprise id">
+      
+      <input type="submit" value="Update User">  
+      
+        
+</form>
+</body>
+</html>
