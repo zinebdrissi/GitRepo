@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/admin_layout">
+<head>
+<meta charset="UTF-8">
+<title>Client</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1>Clients</h1>
+					</div>
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#">Clients</a></li>
+							<li class="breadcrumb-item active">Details</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</section>
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<!-- left column -->
+					<div class="col-md-12">
+						<!-- general form elements -->
+						<div class="card card-primary">
+							<div class="card-header">
+								<h3 class="card-title">Details Client</h3>
+							</div>
+							<!-- /.card-header -->
+							<!-- form start -->
+							<form data-toggle="validator" role="form" th:object="${client}"
+								th:action="@{/clients/save}" method="post">
+								<input type="hidden" th:field="*{id}" />
+							    <input type="hidden" th:field="*{version}" /> 
+								<input type="hidden" th:field="*{codeClient}" /> 
+								<input type="hidden" th:field="*{uuid}" />
+								<div class="card-body">
+								<div class="row" sec:authorize="hasAuthority('CLIENT_PAYEMENT')">
+				                    <div class="col-sm-12">
+				                      <!-- text input -->
+				                      <div class="form-group">
+				                        <label>Payement</label>
+				                        <input type="text" required="true" th:field="*{price}" class="form-control" id="price"	placeholder="Client..." maxlength="20">
+				                      </div>
+				                    </div>
+				                  </div>
+								<div class="row">
+				                    <div class="col-sm-6">
+				                      <!-- text input -->
+				                      <div class="form-group">
+				                        <label>Client Title</label>
+				                        <input type="text" required="true" th:field="*{name}" class="form-control" id="clientTitle"	placeholder="Client..." maxlength="20">
+				                      </div>
+				                    </div>
+				                    <div class="col-sm-6">
+				                      <div class="form-group">
+				                        <label>Client Title 2</label>
+				                        <input type="text" th:field="*{name2}" class="form-control" id="clientTitle2" placeholder="Title2..." maxlength="42">
+				                      </div>
+				                    </div>
+				                  </div>
+				                  
+				                  <div class="row">
+				                    <div class="col-sm-6">
+				                      <!-- text input -->
+				                      <div class="form-group">
+				                        <label>Telephone</label>
+				                        <input type="text" required="true" th:field="*{tel}" class="form-control" id="tel"	placeholder="Tel..." maxlength="20">
+				                      </div>
+				                    </div>
+				                    <div class="col-sm-6">
+				                      <div class="form-group">
+				                        <label>Activité</label>
+				                        <input type="text" required="true" th:field="*{webSite}" class="form-control" id="webSite" placeholder="Activité..." maxlength="42">
+				                      </div>
+				                    </div>
+				                  </div>
+				                  <div class="row">
+				                 	 <div class="col-sm-6">
+				                      <div class="form-group">
+				                        <label>Adresse</label>
+				                        <input type="text" required="true" th:field="*{adress}" class="form-control" id="adress" placeholder="Adresse..." maxlength="42">
+				                      </div>
+				                    </div>
+				                    <div class="col-sm-6">
+				                      <!-- text input -->
+				                      <div class="form-group">
+				                        <label>Adresse 2</label>
+				                        <input type="text" th:field="*{adress2}" class="form-control" id="adress2" placeholder="Adresse2.." maxlength="42">
+				                      </div>
+				                    </div>
+				                  </div>
+				                   <div class="row">
+				                    <div class="col-sm-6">
+				                      <!-- text input -->
+				                      <div class="form-group">
+				                        <label>Site / Email</label>
+				                        <input type="text" required="true" th:field="*{email}" class="form-control" id="email2" placeholder="Site / Email..." maxlength="42">
+				                      </div>
+				                    </div>
+				                  </div>
+				                  <div class="row">
+				                    <div class="col-sm-6">
+				                      <!-- text input -->
+				                      <div class="form-group">
+				                        <label>Date Debut</label>
+				                        <div class="input-group">
+						                    <div class="input-group-prepend">
+						                      <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+						                    </div>
+						                    <input type="text" required="true" th:field="*{dateStart}" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+						                  </div>
+				                      </div>
+				                    </div>
+				                     <div class="col-sm-6">
+				                      <div class="form-group">
+				                        <label>Date Fin</label>
+				                         <div class="input-group">
+						                    <div class="input-group-prepend">
+						                      <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+						                    </div>
+						                    <input type="text"  required="true" th:field="*{dateEnd}" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+						                  </div>
+						                   </div>
+				                    </div>
+				                  </div>
+										                  <div class="row">
+				                 	 <div class="col-sm-3">
+				                      <div class="form-group">
+				                        <label>Line 1</label>
+				                        <input type="text"  th:field="*{line1}" class="form-control" id="line1" placeholder="Line1..." maxlength="42">
+				                      </div>
+				                    </div>
+				                    <div class="col-sm-3">
+				                      <!-- text input -->
+				                      <div class="form-group">
+				                        <label>Line 2</label>
+				                        <input type="text"  th:field="*{line2}" class="form-control" id="line2" placeholder="Line2.." maxlength="42">
+				                      </div>
+				                    </div>
+				                    	 <div class="col-sm-3">
+				                      <div class="form-group">
+				                        <label>Line 3</label>
+				                        <input type="text"  th:field="*{line3}" class="form-control" id="line3" placeholder="Line3..." maxlength="42">
+				                      </div>
+				                    </div>
+				                    <div class="col-sm-3">
+				                      <!-- text input -->
+				                      <div class="form-group">
+				                        <label>Line 4</label>
+				                        <input type="text"  th:field="*{line4}" class="form-control" id="line2" placeholder="Line4.." maxlength="42">
+				                      </div>
+				                    </div>
+				                  </div>
+								</div>
+								<!-- /.card-body -->
+
+								<div class="card-footer">
+									<button type="submit" class="btn btn-primary">Enregistrer</button>
+								</div>
+							</form>
+						</div>
+						<!-- /.card -->
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+	</div>
+
+	<th:block layout:fragment="script" >
+		<script src="/plugins/moment/moment.min.js"></script>
+		<script src="/plugins/inputmask/jquery.inputmask.min.js"></script>
+		<script th:inline="javascript">
+				$(function() {
+					$('[data-mask]').inputmask()
+				})
+		</script>
+	</th:block>
+
+	<div>
+	
+	
+</div>
+	
+</body>
+</html>

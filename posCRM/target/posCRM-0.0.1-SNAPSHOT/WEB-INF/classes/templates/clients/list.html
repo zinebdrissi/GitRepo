@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorator="/admin_layout">
+<head>
+<meta charset="UTF-8">
+<title>Clients</title>
+<!-- DataTables -->
+
+
+
+<link rel="stylesheet"
+	href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet"
+	href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet"
+	href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+</head>
+<body>
+	<div layout:fragment="content">
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1>Clients</h1>
+					</div>
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#">Clients</a></li>
+							<li class="breadcrumb-item active">List</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</section>
+		<!-- Main content -->
+		<section class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							
+							<!-- /.card-header -->
+							<div class="card-body">
+								<table id="tableClients"
+									class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>Client</th>
+											<th>Adresse</th>
+											<th>Debut</th>
+											<th>Fin</th>
+											<th>Payement</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="row : ${list}">
+											<td th:text="${row.codeClient}"></td>
+											<td th:text="${row.name}"></td>
+											<td th:text="${row.adress}"></td>
+											<td th:text="${row.dateStart}"></td>
+											<td th:text="${row.dateEnd}"></td>
+											<td th:text="${row.price}"></td>
+											<td align="center"><a
+												sec:authorize="hasAuthority('CLIENT_EDIT')"
+												th:href="${'/clients/edit/' + row.id}"
+												class="btn btn-success  btn-sm"><i class="fas fa-edit"></i></a>
+												<a sec:authorize="hasAuthority('CLIENT_DELETE')"
+												th:href="${'/clients/delete/' + row.id}"
+												class="btn btn-danger  btn-sm"><i class="fas fa-trash"></i></a>
+												<a sec:authorize="hasAuthority('CLIENT_DOWNLOAD_CONFIG')"
+												th:href="${'/clients/download/' + row.id}"
+												class="btn btn-info btn-sm"><i class="fas fa-save"></i></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.card-body -->
+							<div class="card-footer clearfix">
+								<ul class="pagination pagination-sm m-0 float-right">
+									<li class="page-item"><a class="page-link"
+										href="/clients/1">&laquo;</a></li>
+									<li class="page-item"
+										th:each="p : ${#numbers.sequence(1, endIndex/beginIndex)}"
+										th:class="${p == currentIndex} ? 'active' : ''"><a
+										class="page-link" th:href="${'/clients/' + p}" th:text="${p}"></a></li>
+									<li class="page-item"><a class="page-link"
+										th:href="${'/clients/' + endIndex}">&raquo;</a></li>
+								</ul>
+
+							</div>
+						</div>
+						<!-- /.card -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Main content -->
+	</div>
+
+
+	<th:block layout:fragment="script">
+		<!-- DataTables  & Plugins -->
+		<script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+		<script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+		<script
+			src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+		<script
+			src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+		<script src="/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+		<script src="/plugins/jszip/jszip.min.js"></script>
+		<script src="/plugins/pdfmake/pdfmake.min.js"></script>
+		<script src="/plugins/pdfmake/vfs_fonts.js"></script>
+		<script src="/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+		<script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+		<script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+		<script>
+			$(function() {
+				$('#tableClients').DataTable({
+					"paging" : false,
+					"lengthChange" : false,
+					"searching" : true,
+					"ordering" : true,
+					"info" : false,
+					"autoWidth" : false,
+					"responsive" : true,
+					"stripeClasses": [ 'odd-row', 'even-row' ]
+				});
+			});
+		</script>
+
+	</th:block>
+
+</body>
+</html>
