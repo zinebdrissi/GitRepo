@@ -33,12 +33,13 @@ keycloak:
   auth-server-url: http://localhost:8180/auth
   resource: springboot-keycloak
   public-client: true
+  cors: true
   #bearer-only: true
   credentials:
      secret : 9xGgwRkKro6Qp71dy04mPaX2rkos9wZj 
   ssl-required: external
   use-resource-role-mappings : true
- # securityConstraints[0].authRoles[0] : admin
+  #securityConstraints[0].authRoles[0] : admin
   #securityConstraints[0].securityCollections[0].patterns[0] : /accounts/*
   #principal-attribute: preferred_username
        
