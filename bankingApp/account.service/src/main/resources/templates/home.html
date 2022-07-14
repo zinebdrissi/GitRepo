@@ -45,8 +45,8 @@
             <th>actualBalance</th>
             <th>type</th>
             <th>status</th>
-            <th>Edit</th>
             <th>Delete</th>
+           
             
    	</tr>
   </thead>
@@ -59,11 +59,16 @@
 		<td th:text="${A.type}"> type </td>
 		<td th:text="${A.status}"> status </td>
 		
+		<td> <a th:href="@{'/accounts/deleteAccount' + ${A.accountId}}">Delete</a></td> 
+								    
 			
 			
 		
-		<!--   <td><a th:href="@{/edit/{id}(id=${})}">Edit</a></td>									    
-		<td>
+		<!--   
+			<td><a th:href="@{/edit/{id}(id=${})}">Edit</a></td>									    
+		<td>	
+			
+		
 			<a th:href="@{'/delete/' + ${}}">Delete</a>
 		</td>	-->	    
 		</tr> 
@@ -76,7 +81,8 @@
    
    
    
-		<div align = "left" >		   
+		<div align = "left" >	
+		<button type="button" class="deletebtn">  
 		     <h3><a  th:href="@{'/'}">Add new account</a></h3>     
 	    </div>
 	

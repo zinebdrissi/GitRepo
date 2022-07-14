@@ -46,18 +46,19 @@ import userdetails.authentication.keycloakUserDetailsAuthenticationProvider;
 @Import({KeycloakSpringBootConfigResolver.class})
 public class keycloakAccountConfiguration extends KeycloakWebSecurityConfigurerAdapter {
 	
-   	@Autowired    
+   	@SuppressWarnings("deprecation")
+	@Autowired    
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
     	
     	
     	KeycloakAuthenticationProvider keycloakAuthenticationProvider = keycloakAuthenticationProvider();
 		keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
-		 auth.authenticationProvider(keycloakAuthenticationProvider);
 		
-//		 .passwordEncoder(NoOpPasswordEncoder.getInstance())
-//         .withUser("zineb").password("zineb").roles("admin")
-//         .and()
-//         .withUser("soukaina").password("soukaina").roles("user");
+		
+		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance())
+         .withUser("zineb").password("zineb").roles("admin")
+         .and()
+         .withUser("soukaina").password("soukaina").roles("user");
 		 auth.authenticationProvider(keycloakAuthenticationProvider());
 		
 		
@@ -88,10 +89,10 @@ public class keycloakAccountConfiguration extends KeycloakWebSecurityConfigurerA
     
        // super.configure(http);
     	 http
-    	 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-         .and()
-         .addFilterBefore(keycloakPreAuthActionsFilter(), LogoutFilter.class)
-         .addFilterBefore(keycloakAuthenticationProcessingFilter(), X509AuthenticationFilter.class)
+    	 //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+         //.and()
+         //.addFilterBefore(keycloakPreAuthActionsFilter(), LogoutFilter.class)
+         //.addFilterBefore(keycloakAuthenticationProcessingFilter(), X509AuthenticationFilter.class)
          .csrf().disable().cors().disable().
          authorizeHttpRequests()
          .antMatchers("/login*").permitAll()
@@ -102,17 +103,17 @@ public class keycloakAccountConfiguration extends KeycloakWebSecurityConfigurerA
          .authenticated()
          .and()
          .formLogin()
-         ;		
+         	;	
     }
 
-    @Override
+    /* @Override
     public void configure(WebSecurity web) throws Exception {
       web
           .ignoring()
           .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
     
-    @Bean
+   @Bean
     public FilterRegistrationBean<KeycloakPreAuthActionsFilter> keycloakPreAuthActionsFilterRegistrationBean(
         KeycloakPreAuthActionsFilter filter) {
       FilterRegistrationBean<KeycloakPreAuthActionsFilter> registrationBean = new FilterRegistrationBean<>(
@@ -138,7 +139,7 @@ public class keycloakAccountConfiguration extends KeycloakWebSecurityConfigurerA
       registrationBean.setEnabled(false);
       return registrationBean;
     }
-   
+   */
     @Bean
     public PasswordEncoder getPasswordEncoder() {
         return NoOpPasswordEncoder.getInstance();
